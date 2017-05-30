@@ -1,0 +1,69 @@
+<Files ~ "^\.(htaccess|htpasswd)$">
+deny from all
+</Files>
+SetEnv no-gzip
+
+XSendFile on
+
+
+Options -Indexes
+Options -Multiviews
+RewriteEngine on
+
+#RewriteBase /
+
+#rewrite rule for admin accessing epubs
+#RewriteRule ^book-sample-([0-9]+).607954b7836ee908b463bc61b23d5e14$ book.php?id=$1&sample=1&t=607954b7836ee908b463bc61b23d5e14[L]
+#RewriteRule ^book-([0-9]+).607954b7836ee908b463bc61b23d5e14$ book.php?id=$1&t=607954b7836ee908b463bc61b23d5e14 [L]
+
+#rewrite rule for public accessing epubs
+#RewriteRule ^book-sample-([0-9]+).epub$ book.php?id=$1&sample=1 [L]
+#RewriteRule ^book-([0-9]+).epub$ book.php?id=$1 [L]
+
+
+
+#rewrite rule for api calls
+RewriteRule ^api/([A-Z]+)/books/config(.*)$ data.php?action=storeconfig&region=$1 [L]
+
+RewriteRule ^api/([A-Z]+)/books(.*)$ data.php?action=storeget&region=$1 [L]
+
+
+RewriteRule ^api/([A-Z]+)/promos(.*)$ data.php?action=promosget&region=$1 [L]
+
+RewriteRule ^api/([A-Z]+)/funfacts(.*)$ data.php?action=funfactsget&region=$1 [L]
+
+RewriteRule ^api/([A-Z]+)/helppages(.*)$ data.php?action=helppagesget&region=$1 [L]
+
+RewriteRule ^api/([A-Z]+)/forgotten(.*)$ data.php?action=forget&region=$1 [L,QSA]
+
+
+#rewrite rule for draft api calls
+RewriteRule ^api-draft/([A-Z]+)/books/config(.*)$ data.php?action=storeconfig&region=$1&d=1 [L]
+
+RewriteRule ^api-draft/([A-Z]+)/books(.*)$ data.php?action=storeget&region=$1&d=1 [L]
+
+RewriteRule ^api-draft/([A-Z]+)/promos(.*)$ data.php?action=promosget&region=$1&d=1 [L]
+
+RewriteRule ^api-draft/([A-Z]+)/funfacts(.*)$ data.php?action=funfactsget&region=$1&d=1 [L]
+
+RewriteRule ^api-draft/([A-Z]+)/helppages(.*)$ data.php?action=helppagesget&region=$1&d=1 [L]
+
+RewriteRule ^api-draft/([A-Z]+)/forgotten(.*)$ data.php?action=forget&region=$1&d=1 [L,QSA]
+
+
+
+order deny,allow
+
+
+
+
+
+
+
+
+
+
+
+
+
+
